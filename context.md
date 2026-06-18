@@ -27,11 +27,17 @@ Gulmohar is a Next.js hyper-local digital catalog application for a physical ret
 - Added LLM instructions (`agent/agent.md`) to establish strict behavioral guidelines.
 - Created `context.md` to track project progress, architecture, and current state for seamless agent handoffs.
 - Set up Supabase Client (`utils/supabase/client.ts`) and completed database schema (`products` table, `product-images` storage bucket, and RLS policies).
+- Scaffolded Next.js route groups (`app/(storefront)` and `app/(admin)`).
+- Set up global Tailwind CSS tokens/styles (`globals.css`) to match the "high-end" brand identity.
+- Built the public storefront homepage layout and navigation.
+- Built the Admin authentication UI (`/admin/login`).
+- Completed Product Ingestion (CRUD) Tool in the Admin Dashboard (`/admin/dashboard/page.tsx`) with image upload, deletion, and inventory ledger display.
 
 ## 🚀 Next Steps
-1. Scaffold Next.js route groups (`app/(storefront)` and `app/(admin)`).
-2. Set up global Tailwind CSS tokens/styles to match the "high-end" brand identity.
-3. Build the public storefront homepage layout and navigation.
+1. Build the public storefront catalog page (`app/(storefront)/catalog/page.tsx`) to display products fetched from the database.
+2. Implement category filtering (Women's Wear, Jewelry, Cosmetics) on the storefront.
+3. Finalize and test the public-to-WhatsApp inquiry flow.
+
 ## 🤖 Instructions for AI Agents
 - **Read First:** Always read this `context.md` file and `agent/agent.md` before starting a new task or answering questions.
 - **Update Frequently:** When you complete a significant milestone, add a new feature, or change the architecture, **update this file** to reflect the new state.

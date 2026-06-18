@@ -1,29 +1,32 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       
       {/* Hero Section */}
-      <section className="relative px-4 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:px-8 text-center flex flex-col items-center justify-center overflow-hidden min-h-[80vh]">
-        {/* Background Video */}
+      <section className="relative px-4 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:px-8 text-center flex flex-col items-center justify-center overflow-hidden min-h-[90svh]">
+        {/* Background Video — object-cover fills the container on all screen sizes */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
-          className="absolute inset-0 w-full h-full object-cover -z-20"
+          className="absolute inset-0 w-full h-full object-cover object-center -z-20"
         >
           <source src="/videos/background_video/background.mp4" type="video/mp4" />
         </video>
         
-        {/* Overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-background/70 backdrop-blur-[2px] -z-10" />
+        {/* Light scrim: just enough to make text pop without hiding the video */}
+        <div className="absolute inset-0 bg-black/30 -z-10" />
+        {/* Bottom gradient to ground the CTA button on mobile */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent -z-10" />
         
-        <h1 className="text-5xl md:text-7xl font-serif text-foreground max-w-4xl mx-auto tracking-tight leading-tight mb-8">
+        <h1 className="text-5xl md:text-7xl font-serif text-white max-w-4xl mx-auto tracking-tight leading-tight mb-8">
           Premium Women's Wear, Fine Jewelry, and Cosmetics
         </h1>
-        <p className="text-lg md:text-xl text-foreground-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
           Discover a curated collection of local elegance. Hand-picked luxury fashion and beauty essentials available exclusively at our Mumbai boutique.
         </p>
         <Link 
@@ -43,34 +46,56 @@ export default function HomePage() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Pillar 1: Women's Wear */}
-          <Link href="/catalog?category=womens-wear" className="group relative block aspect-[4/5] overflow-hidden bg-surface border border-border hover:border-gold transition-colors duration-500">
-            <div className="absolute inset-0 bg-foreground/5 group-hover:bg-transparent transition-colors duration-500 z-10" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
-              <span className="text-xs font-medium tracking-[0.2em] uppercase text-foreground-muted mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Discover</span>
-              <h3 className="text-3xl font-serif text-foreground transition-transform duration-500 group-hover:scale-105">Women's Wear</h3>
+          <Link href="/catalog?category=womens-wear" className="group relative block aspect-[4/5] overflow-hidden border border-border hover:border-gold transition-all duration-500">
+            {/* Background Image */}
+            <Image
+              src="/photos/women_ware/dress3.jpeg"
+              alt="Women's Wear Collection"
+              fill
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            {/* Dark gradient scrim — stronger at bottom */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
+            {/* Text overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center z-20">
+              <span className="text-xs font-medium tracking-[0.25em] uppercase text-white/70 mb-2 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-2 group-hover:translate-y-0">Discover</span>
+              <h3 className="text-3xl font-serif text-white">Women's Wear</h3>
             </div>
-            {/* Visual gradient to ground the text */}
-            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
           </Link>
 
           {/* Pillar 2: Jewelry */}
-          <Link href="/catalog?category=jewelry" className="group relative block aspect-[4/5] overflow-hidden bg-surface border border-border hover:border-gold transition-colors duration-500">
-            <div className="absolute inset-0 bg-gold/5 group-hover:bg-transparent transition-colors duration-500 z-10" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
-              <span className="text-xs font-medium tracking-[0.2em] uppercase text-foreground-muted mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Discover</span>
-              <h3 className="text-3xl font-serif text-foreground transition-transform duration-500 group-hover:scale-105">Fine Jewelry</h3>
+          <Link href="/catalog?category=jewelry" className="group relative block aspect-[4/5] overflow-hidden border border-border hover:border-gold transition-all duration-500">
+            {/* Background Image */}
+            <Image
+              src="/photos/Jwellery/jwel_background.jpeg"
+              alt="Fine Jewelry Collection"
+              fill
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
+            <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center z-20">
+              <span className="text-xs font-medium tracking-[0.25em] uppercase text-white/70 mb-2 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-2 group-hover:translate-y-0">Discover</span>
+              <h3 className="text-3xl font-serif text-white">Fine Jewelry</h3>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
           </Link>
 
           {/* Pillar 3: Cosmetics */}
-          <Link href="/catalog?category=cosmetics" className="group relative block aspect-[4/5] overflow-hidden bg-surface border border-border hover:border-gold transition-colors duration-500">
-            <div className="absolute inset-0 bg-blush/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
-              <span className="text-xs font-medium tracking-[0.2em] uppercase text-foreground-muted mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Discover</span>
-              <h3 className="text-3xl font-serif text-foreground transition-transform duration-500 group-hover:scale-105">Premium Cosmetics</h3>
+          <Link href="/catalog?category=cosmetics" className="group relative block aspect-[4/5] overflow-hidden border border-border hover:border-gold transition-all duration-500">
+            {/* Background Image */}
+            <Image
+              src="/photos/Cosmetic/cosmetic.avif"
+              alt="Premium Cosmetics Collection"
+              fill
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
+            <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center z-20">
+              <span className="text-xs font-medium tracking-[0.25em] uppercase text-white/70 mb-2 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-2 group-hover:translate-y-0">Discover</span>
+              <h3 className="text-3xl font-serif text-white">Premium Cosmetics</h3>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
           </Link>
         </div>
       </section>
