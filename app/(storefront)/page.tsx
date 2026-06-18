@@ -1,0 +1,149 @@
+import Link from 'next/link';
+
+export default function HomePage() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      
+      {/* Hero Section */}
+      <section className="relative px-4 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:px-8 text-center flex flex-col items-center justify-center overflow-hidden min-h-[80vh]">
+        {/* Background Video */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover -z-20"
+        >
+          <source src="/videos/background_video/background.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-background/70 backdrop-blur-[2px] -z-10" />
+        
+        <h1 className="text-5xl md:text-7xl font-serif text-foreground max-w-4xl mx-auto tracking-tight leading-tight mb-8">
+          Premium Women's Wear, Fine Jewelry, and Cosmetics
+        </h1>
+        <p className="text-lg md:text-xl text-foreground-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+          Discover a curated collection of local elegance. Hand-picked luxury fashion and beauty essentials available exclusively at our Mumbai boutique.
+        </p>
+        <Link 
+          href="/catalog" 
+          className="inline-flex items-center justify-center px-8 py-4 bg-foreground text-background font-medium text-sm tracking-wide uppercase hover:bg-gold hover:text-foreground transition-colors duration-300"
+        >
+          View The Catalog
+        </Link>
+      </section>
+
+      {/* The Three Pillars Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">Our Collections</h2>
+          <p className="text-foreground-muted">Explore the three pillars of Gulmohar's aesthetic.</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Pillar 1: Women's Wear */}
+          <Link href="/catalog?category=womens-wear" className="group relative block aspect-[4/5] overflow-hidden bg-surface border border-border hover:border-gold transition-colors duration-500">
+            <div className="absolute inset-0 bg-foreground/5 group-hover:bg-transparent transition-colors duration-500 z-10" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
+              <span className="text-xs font-medium tracking-[0.2em] uppercase text-foreground-muted mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Discover</span>
+              <h3 className="text-3xl font-serif text-foreground transition-transform duration-500 group-hover:scale-105">Women's Wear</h3>
+            </div>
+            {/* Visual gradient to ground the text */}
+            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
+          </Link>
+
+          {/* Pillar 2: Jewelry */}
+          <Link href="/catalog?category=jewelry" className="group relative block aspect-[4/5] overflow-hidden bg-surface border border-border hover:border-gold transition-colors duration-500">
+            <div className="absolute inset-0 bg-gold/5 group-hover:bg-transparent transition-colors duration-500 z-10" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
+              <span className="text-xs font-medium tracking-[0.2em] uppercase text-foreground-muted mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Discover</span>
+              <h3 className="text-3xl font-serif text-foreground transition-transform duration-500 group-hover:scale-105">Fine Jewelry</h3>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
+          </Link>
+
+          {/* Pillar 3: Cosmetics */}
+          <Link href="/catalog?category=cosmetics" className="group relative block aspect-[4/5] overflow-hidden bg-surface border border-border hover:border-gold transition-colors duration-500">
+            <div className="absolute inset-0 bg-blush/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
+              <span className="text-xs font-medium tracking-[0.2em] uppercase text-foreground-muted mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Discover</span>
+              <h3 className="text-3xl font-serif text-foreground transition-transform duration-500 group-hover:scale-105">Premium Cosmetics</h3>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
+          </Link>
+        </div>
+      </section>
+
+      {/* Workflow Informational Section */}
+      <section className="py-24 bg-foreground text-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-serif mb-16">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+            
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full border border-background/20 flex items-center justify-center text-2xl font-serif mb-6 text-gold">1</div>
+              <h3 className="text-xl font-medium mb-3">Browse Online</h3>
+              <p className="text-background/70 leading-relaxed max-w-sm">
+                Explore our carefully curated digital catalog to discover the latest arrivals and timeless classics from the comfort of your home.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full border border-background/20 flex items-center justify-center text-2xl font-serif mb-6 text-gold">2</div>
+              <h3 className="text-xl font-medium mb-3">Inquire via WhatsApp</h3>
+              <p className="text-background/70 leading-relaxed max-w-sm">
+                See something you love? Tap the WhatsApp button to connect directly with our boutique manager and confirm stock availability.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full border border-background/20 flex items-center justify-center text-2xl font-serif mb-6 text-gold">3</div>
+              <h3 className="text-xl font-medium mb-3">Try On In-Store</h3>
+              <p className="text-background/70 leading-relaxed max-w-sm">
+                Visit our boutique to experience the premium quality firsthand. Reserve your favorites and purchase directly at the counter.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Hyper-Local Map Section */}
+      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row gap-12 items-center">
+        <div className="w-full md:w-1/3">
+          <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">Visit Gulmohar</h2>
+          <p className="text-foreground-muted leading-relaxed mb-6">
+            Located in Kolkata, Gulmohar offers an unparalleled shopping experience for women's luxury apparel, artisanal jewelry, and branded cosmetics.
+          </p>
+          <address className="not-italic text-sm text-foreground space-y-2 mb-8">
+            <p className="font-medium text-base">Gulmohar Boutique</p>
+            <p>Shop No 7, Greenvista, Narayanpur</p>
+            <p>Battala, R-Gopalpur</p>
+            <p>Kolkata, North 24 Parganas</p>
+          </address>
+          <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.15em] text-gold hover:text-foreground transition-colors">
+            Get Directions <span aria-hidden="true">&rarr;</span>
+          </Link>
+        </div>
+        
+        <div className="w-full md:w-2/3 aspect-video md:aspect-[21/9] bg-surface relative overflow-hidden border border-border p-1">
+          {/* Clean Placeholder Map Embed */}
+          <div className="w-full h-full relative bg-foreground/5">
+            <iframe 
+              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=GREENVISTA,%20NARAYANPUR,%20BATTALA,%20R-GOPALPUR,%20KOLKATA+(Gulmohar%20Boutique)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen={false} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-700"
+            />
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+}
