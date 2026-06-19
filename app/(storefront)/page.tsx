@@ -27,7 +27,7 @@ export default function HomePage() {
           Premium Women's Wear, Fine Jewelry, and Cosmetics
         </h1>
         <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Discover a curated collection of local elegance. Hand-picked luxury fashion and beauty essentials available exclusively at our Mumbai boutique.
+          Discover a curated collection of local elegance. Hand-picked luxury fashion and beauty essentials available exclusively at our Kolkata boutique.
         </p>
         <Link 
           href="/catalog" 
