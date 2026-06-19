@@ -2,9 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/utils/supabase/client";
 import { notFound } from "next/navigation";
-
-// Store phone number (include country code, without '+' or spaces)
-const STORE_PHONE_NUMBER = "918910740057"; 
+import { STORE_CONFIG } from "@/config/store";
 
 export default async function ProductDetailPage({
   params,
@@ -46,7 +44,7 @@ export default async function ProductDetailPage({
   const pageUrl = `${baseUrl}/catalog/${product.id}`;
   
   const message = `Hi Gulmohar! I saw the ${product.title} (${displayCategory}) on your website catalog and wanted to check if it's currently available in the shop to view. ${pageUrl}`;
-  const whatsappUrl = `https://wa.me/${STORE_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/${STORE_CONFIG.phone}?text=${encodeURIComponent(message)}`;
 
   return (
     <div className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">

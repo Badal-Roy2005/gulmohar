@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { STORE_CONFIG } from '@/config/store';
 
 export default function StorefrontLayout({
   children,
@@ -51,7 +52,10 @@ function Footer() {
             <span>Shop No 7, Greenvista</span>
             <span>Narayanpur, Battala, R-Gopalpur</span>
             <span>Kolkata, North 24 Parganas</span>
-            <span className="mt-2 text-foreground font-medium">Phone: +91 89107 40057</span>
+            <span className="mt-2 text-foreground font-medium flex items-center gap-2">
+              Phone: {STORE_CONFIG.phone}
+              <a href={`tel:${STORE_CONFIG.phone}`} className="text-gold hover:text-foreground transition-colors text-xs uppercase tracking-wider border-b border-gold/30 pb-0.5 ml-2">Call Us</a>
+            </span>
           </address>
         </div>
         <div>
