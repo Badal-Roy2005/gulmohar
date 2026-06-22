@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { STORE_CONFIG } from '@/config/store';
+import {Navbar} from '@/components/Navbar';
 
 export default function StorefrontLayout({
   children,
@@ -14,25 +14,6 @@ export default function StorefrontLayout({
       </main>
       <Footer />
     </div>
-  );
-}
-
-function Navbar() {
-  return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <Link href="/" className="font-serif text-3xl tracking-tight text-foreground">
-          Gulmohar
-        </Link>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-foreground-muted">
-          <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-          <Link href="/catalog?category=womens-wear" className="hover:text-foreground transition-colors">Women's Wear</Link>
-          <Link href="/catalog?category=jewelry" className="hover:text-foreground transition-colors">Jewelry</Link>
-          <Link href="/catalog?category=cosmetics" className="hover:text-foreground transition-colors">Cosmetics</Link>
-          <Link href="/contact" className="hover:text-foreground transition-colors">Contact Us</Link>
-        </nav>
-      </div>
-    </header>
   );
 }
 
