@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { supabase } from "@/utils/supabase/client";
 import { notFound } from "next/navigation";
 import { STORE_CONFIG } from "@/config/store";
+import { getCachedProduct } from "@/lib/products";
+import { safeImageSrc } from "@/lib/images";
+
+export const revalidate = 60;
 
 export default async function ProductDetailPage({
   params,
@@ -12,14 +15,9 @@ export default async function ProductDetailPage({
   const resolvedParams = await params;
   const { id } = resolvedParams;
 
-  // Fetch product from Supabase
-  const { data: product, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("id", id)
-    .single();
+  const product = await getCachedProduct(id);
 
-  if (error || !product) {
+  if (!product) {
     return (
       <div className="py-32 text-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-serif text-foreground mb-4">Product Not Found</h1>
@@ -63,21 +61,23 @@ export default async function ProductDetailPage({
         
         {/* Left Column: Image Showcase */}
         <div className="relative aspect-[3/4] md:aspect-[4/5] bg-surface border border-border w-full overflow-hidden">
-          {product.image_urls && product.image_urls.length > 0 ? (
-            <Image
-              src={product.image_urls[0]}
-              alt={product.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-              unoptimized
-            />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-foreground-muted/40 font-serif text-xl tracking-widest uppercase bg-surface">
-              No Image Available
-            </div>
-          )}
+          {(() => {
+            const src = safeImageSrc(product.image_urls?.[0]);
+            return src ? (
+              <Image
+                src={src}
+                alt={product.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center text-foreground-muted/40 font-serif text-xl tracking-widest uppercase bg-surface">
+                No Image Available
+              </div>
+            );
+          })()}
         </div>
 
         {/* Right Column: Product Details */}
