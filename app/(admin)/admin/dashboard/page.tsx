@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { supabase } from "@/utils/supabase/client";
+import { safeImageSrc } from "@/lib/images";
 
 // Define the expected Product shape
 interface Product {
@@ -192,18 +193,21 @@ export default function AdminDashboard() {
                     <tr key={product.id} className="hover:bg-surface/30 transition-colors">
                       <td className="p-5">
                         <div className="relative w-12 h-16 bg-surface border border-border overflow-hidden">
-                          {product.image_urls && product.image_urls.length > 0 ? (
-                            <Image
-                              src={product.image_urls[0]}
-                              alt={product.title}
-                              fill
-                              className="object-cover"
-                              sizes="48px"
-                              unoptimized
-                            />
-                          ) : (
-                            <span className="absolute inset-0 flex items-center justify-center text-[9px] text-foreground-muted uppercase tracking-wider text-center p-1">No Img</span>
-                          )}
+                          {(() => {
+                            const src = safeImageSrc(product.image_urls?.[0]);
+                            return src ? (
+                              <Image
+                                src={src}
+                                alt={product.title}
+                                fill
+                                className="object-cover"
+                                sizes="48px"
+                                unoptimized
+                              />
+                            ) : (
+                              <span className="absolute inset-0 flex items-center justify-center text-[9px] text-foreground-muted uppercase tracking-wider text-center p-1">No Img</span>
+                            );
+                          })()}
                         </div>
                       </td>
                       <td className="p-5 font-serif text-base text-foreground font-medium">

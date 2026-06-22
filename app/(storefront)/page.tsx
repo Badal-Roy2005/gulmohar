@@ -56,6 +56,7 @@ export default function HomePage() {
               src="/photos/women_ware/dress3.jpeg"
               alt="Women's Wear Collection"
               fill
+              unoptimized
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 33vw"
             />
@@ -75,6 +76,7 @@ export default function HomePage() {
               src="/photos/Jwellery/jwel_background.jpeg"
               alt="Fine Jewelry Collection"
               fill
+              unoptimized
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 33vw"
             />
@@ -92,6 +94,7 @@ export default function HomePage() {
               src="/photos/Cosmetic/cosmetic.avif"
               alt="Premium Cosmetics Collection"
               fill
+              unoptimized
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 33vw"
             />

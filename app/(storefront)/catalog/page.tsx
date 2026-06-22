@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { supabase } from "@/utils/supabase/client";
+import { getCachedProducts } from "@/lib/products";
+import { safeImageSrc } from "@/lib/images";
 
-// In Next.js 15+, searchParams is a Promise. We must await it.
+export const revalidate = 60;
+
 export default async function CatalogPage({
   searchParams,
 }: {
@@ -11,21 +13,7 @@ export default async function CatalogPage({
   const params = await searchParams;
   const categoryFilter = typeof params.category === "string" ? params.category : null;
 
-  // Fetch from Supabase
-  let query = supabase
-    .from("products")
-    .select("id, title, price, category, image_urls, is_featured")
-    .order("created_at", { ascending: false });
-
-  if (categoryFilter) {
-    query = query.eq("category", categoryFilter);
-  }
-
-  const { data: products, error } = await query;
-
-  if (error) {
-    console.error("Error fetching products:", error);
-  }
+  const products = await getCachedProducts(categoryFilter);
 
   const categoryLabels: Record<string, string> = {
     "womens-wear": "Women's Wear",
@@ -72,21 +60,23 @@ export default async function CatalogPage({
           {products.map((product) => (
             <Link key={product.id} href={`/catalog/${product.id}`} className="group block">
               <div className="relative aspect-[3/4] bg-surface mb-4 overflow-hidden border border-border/50">
-                {product.image_urls && product.image_urls.length > 0 ? (
-                  <Image
-                    src={product.image_urls[0]}
-                    alt={product.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    unoptimized
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-background text-foreground-muted/40 font-serif text-lg tracking-widest uppercase">
-                    No Image
-                  </div>
-                )}
-                
+                {(() => {
+                  const src = safeImageSrc(product.image_urls?.[0]);
+                  return src ? (
+                    <Image
+                      src={src}
+                      alt={product.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-background text-foreground-muted/40 font-serif text-lg tracking-widest uppercase">
+                      No Image
+                    </div>
+                  );
+                })()}
+
                 {/* Status Badge */}
                 <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-md px-3 py-1.5 text-[10px] uppercase tracking-widest text-foreground font-medium border border-border/50 shadow-sm">
                   Available
